@@ -34,3 +34,14 @@
  * @since		1.0
  */
 
+require_once( 'includes/class-pp-dependencies.php' );
+
+if ( false === PP_Dependencies::is_woocommerce_active( '3.0' ) ) {
+	PP_Dependencies::enqueue_admin_notice( '{plugin_name}', 'WooCommerce', '3.0' );
+	return;
+}
+
+if ( false === PP_Dependencies::is_subscriptions_active( '2.1' ) ) {
+	PP_Dependencies::enqueue_admin_notice( '{plugin_name}', 'WooCommerce Subscriptions', '2.1' );
+	return;
+}
