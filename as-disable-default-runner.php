@@ -1,20 +1,19 @@
 <?php
 /*
- * Plugin Name: {plugin_name}
- * Plugin URI: https://github.com/Prospress/{plugin_slug}/
- * Description: {plugin_short_description}
+ * Plugin Name: Action Scheduler - Disable Default Queue Runner
+ * Plugin URI: https://github.com/Prospress/action-scheduler-disable-default-runner/
+ * Description: Disable Action Scheduler's default queue runner, by removing it from the WP-Cron hook.
  * Author: Prospress Inc.
  * Author URI: https://prospress.com/
  * License: GPLv3
  * Version: 1.0.0
- * Version: 1.0.0
  * Requires at least: 4.0
  * Tested up to: 4.8
  *
- * GitHub Plugin URI: Prospress/{plugin_slug}
+ * GitHub Plugin URI: Prospress/action-scheduler-disable-default-runner
  * GitHub Branch: master
  *
- * Copyright 2017 Prospress, Inc.  (email : freedoms@prospress.com)
+ * Copyright 2018 Prospress, Inc.  (email : freedoms@prospress.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,19 +28,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @package		{plugin_name}
+ * @package		Action Scheduler - Disable Default Queue Runner
  * @author		Prospress Inc.
  * @since		1.0
  */
 
-require_once( 'includes/class-pp-dependencies.php' );
-
-if ( false === PP_Dependencies::is_woocommerce_active( '3.0' ) ) {
-	PP_Dependencies::enqueue_admin_notice( '{plugin_name}', 'WooCommerce', '3.0' );
-	return;
+function asdds_disable_default_runner() {
+	remove_action( 'action_scheduler_run_queue', array( ActionScheduler::runner(), 'run' ) );
 }
-
-if ( false === PP_Dependencies::is_subscriptions_active( '2.1' ) ) {
-	PP_Dependencies::enqueue_admin_notice( '{plugin_name}', 'WooCommerce Subscriptions', '2.1' );
-	return;
-}
+// ActionScheduler_QueueRunner::init() is attached to 'init' with priority 1, so we need to run after that
+add_action( 'init', 'asdds_disable_default_runner', 10 );
