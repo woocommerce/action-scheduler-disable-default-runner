@@ -1,6 +1,6 @@
 # Action Scheduler - Disable Default Queue Runner
 
-Disable Action Scheduler's default queue runner, by removing it from the WP-Cron hook.
+Disable Action Scheduler's default queue runner, by removing it from the WP-Cron hook. Handy for sites that run Action Scheduler via [WP CLI](https://github.com/Prospress/action-scheduler/pull/89).
 
 ## Installation
 
