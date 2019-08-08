@@ -1,8 +1,8 @@
 <?php
 /*
- * Plugin Name: Action Scheduler - Disable WP Cron Queue Runner
+ * Plugin Name: Action Scheduler - Disable Default Queue Runner
  * Plugin URI: https://github.com/Prospress/action-scheduler-disable-default-runner/
- * Description: Disable Action Scheduler's default queue runner, by removing it from the WP-Cron hook.
+ * Description: Disable Action Scheduler's default queue runner, by removing it from the 'action_scheduler_run_queue' hook.
  * Author: Prospress Inc.
  * Author URI: https://prospress.com/
  * License: GPLv3
